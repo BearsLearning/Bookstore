@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookshop Inventory</title>
+    <title>Bookshop</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,71 +11,31 @@
         <header>
             <div>
                 <h1>Bookshop</h1>
-                <p>Browse current stock.</p>
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search books" aria-label="Search books">
-                <button type="button">Search</button>
             </div>
         </header>
 
-        <section>
-            <h2>In Stock</h2>
-            <div class="book-grid" id="book-grid">
-                <!-- Book cards are rendered here by JavaScript -->
+        <div class="container">
+            <div class="search">
+                <input type="text" id="search" placeholder="Search for books...">
+                <button onclick="searchBooks()">Search</button>
             </div>
-        </section>
+        </div>
 
-        <footer class="footer">
-            <p>Inventory is currently static. Backend integration will populate stock data from the database.</p>
-        </footer>
+        <div class="add-book">
+            <h2>Add Book</h2>
+            <input id="title" type="text" placeholder="Title">
+            <input id="author" type="text" placeholder="Author">
+            <input id="price" type="text" placeholder="Price">
+            <input id="category" type="text" placeholder="Category">
+            <input id="image" type="text" placeholder="Image URL">
+
+            <button onclick="addBook()">Add Book</button>
+        </div>
+
+        <div id="bookList"></div>
+
     </main>
+    <script src="script.js"></script>
 
-    <script>
-        const booksInStock = [
-            {
-                title: "The Great Gatsby",
-                author: "F. Scott Fitzgerald",
-                price: "$12.99",
-                description: "A classic novel of the Jazz Age.",
-                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                title: "1984",
-                author: "George Orwell",
-                price: "$11.50",
-                description: "Dystopian fiction about surveillance and control.",
-                image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                title: "The Little Prince",
-                author: "Antoine de Saint-Exupéry",
-                price: "$9.75",
-                description: "A poetic tale about friendship and wonder.",
-                image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80"
-            }
-        ];
-
-        const bookGrid = document.getElementById('book-grid');
-
-        function renderBooks(books) {
-            bookGrid.innerHTML = books.map(book => `
-                <article class="book-card">
-                    <img src="${book.image}" alt="${book.title} cover">
-                    <div>
-                        <h2>${book.title}</h2>
-                        <p>${book.author}</p>
-                        <p>${book.description}</p>
-                    </div>
-                    <div>
-                        <p class="price">${book.price}</p>
-                        <button type="button">View details</button>
-                    </div>
-                </article>
-            `).join('');
-        }
-
-        renderBooks(booksInStock);
-    </script>
 </body>
 </html>
