@@ -12,6 +12,6 @@ image varchar(500)
 
 insert into books(title, author, price, category,image)
 values
-("Node.js Guide", "John Smith", 29.99, "Programming", "https://picsum.photos/200/300"),
-("Javascript Mastery", "David Brown", 34.99, "Programming", "https://picsum.photos/200/301"),
-("CSS Design", "Sarah Wilson", 19.99, "Web Design", "https://picsum.photos/200/302");
+("Node.js Guide", "John Smith", 29.99, "Programming", "/Images/node.js.jpg"),
+("Javascript Mastery", "David Brown", 34.99, "Programming", "/Images/javascript-mastery.jpg"),
+("CSS Design", "Sarah Wilson", 19.99, "Web Design", "/Images/css-design.jpg");
