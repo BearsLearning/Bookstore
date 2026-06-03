@@ -17,7 +17,7 @@ function loadBooks() {
             <p>Category: ${book.category}</p>
             <p>$${book.price}</p>
             <button
-                class"delete-btn"
+                class="delete-btn"
                 onclick="deleteBook(${book.id})">Delete
             </button>
         </div>
@@ -57,19 +57,19 @@ function deleteBook(id) {
 };
 
 function searchBooks() {
-    const keyword = document.getElementByIld("search").value;
-    if(!keyword){
-        loadbooks();
+    const keyword = document.getElementById("search").value.trim();
+    if (!keyword) {
+        loadBooks();
         return;
     }
-    fetch('http://localhost:3000/books/search/${keyword}').then(response => response.json())
+    fetch(`${API_URL}/search/${encodeURIComponent(keyword)}`).then(response => response.json())
     .then(data => {
         const bookList = document.getElementById('bookList');
         bookList.innerHTML = '';
         data.forEach(book => {
             bookList.innerHTML += `
             <div class="book-card">
-                <img src="${book.image}">
+                <img src="Images/${book.image}">
                 <h3>${book.title}</h3>
                 <p>Author: ${book.author}</p>
                 <p>Category: ${book.category}</p>

@@ -21,7 +21,7 @@ app.get("/books", (req, res) => {
 
 /*Searching Books*/
 app.get("/books/search/:keyword", (req, res) => {
-    const keyword = "%$(req.params.keyword)%";
+    const keyword = `%${req.params.keyword}%`;
     db.query(
         "SELECT * FROM books WHERE title LIKE ? OR author LIKE ?",
         [keyword, keyword],
