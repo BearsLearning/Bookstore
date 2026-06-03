@@ -1,4 +1,5 @@
 const API_URL = 'http://localhost:3000/books';
+const IMAGE_URL = 'http://localhost:3000/images';
 
 loadBooks();
 
@@ -11,7 +12,7 @@ function loadBooks() {
     data.forEach(book => {
         bookList.innerHTML += `
         <div class="book-card">
-            <img src="Images/${book.image}">
+            <img src="${IMAGE_URL}/${book.image}" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
             <h3>${book.title}</h3>
             <p>Author: ${book.author}</p>
             <p>Category: ${book.category}</p>
@@ -26,22 +27,28 @@ function loadBooks() {
 });}
 
 function addBook() {
-    const book = {
-        title: document.getElementById('title').value,
-        author: document.getElementById('author').value,
-        category: document.getElementById('category').value,
-        price: parseFloat(document.getElementById('price').value),
-        image: document.getElementById('image').value
-    };
+    const formData = new FormData();
+    formData.append('title', document.getElementById('title').value);
+    formData.append('author', document.getElementById('author').value);
+    formData.append('category', document.getElementById('category').value);
+    formData.append('price', parseFloat(document.getElementById('price').value));
+
+    const fileInput = document.getElementById('imageFile');
+    if (fileInput && fileInput.files.length > 0) {
+        formData.append('image', fileInput.files[0]);
+    }
+
     fetch(API_URL, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(book)
+        body: formData
     })
     .then(response => response.json())
     .then(() => {
+        document.getElementById('title').value = '';
+        document.getElementById('author').value = '';
+        document.getElementById('category').value = '';
+        document.getElementById('price').value = '';
+        if (fileInput) fileInput.value = '';
         loadBooks();
     });
 };
@@ -69,7 +76,7 @@ function searchBooks() {
         data.forEach(book => {
             bookList.innerHTML += `
             <div class="book-card">
-                <img src="Images/${book.image}">
+                <img src="${IMAGE_URL}/${book.image}" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
                 <h3>${book.title}</h3>
                 <p>Author: ${book.author}</p>
                 <p>Category: ${book.category}</p>
