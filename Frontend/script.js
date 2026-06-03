@@ -11,7 +11,7 @@ function loadBooks() {
     data.forEach(book => {
         bookList.innerHTML += `
         <div class="book-card">
-            <img src="$(book.image)">
+            <img src="Images/${book.image}">
             <h3>${book.title}</h3>
             <p>Author: ${book.author}</p>
             <p>Category: ${book.category}</p>
@@ -58,6 +58,10 @@ function deleteBook(id) {
 
 function searchBooks() {
     const keyword = document.getElementByIld("search").value;
+    if(!keyword){
+        loadbooks();
+        return;
+    }
     fetch('http://localhost:3000/books/search/${keyword}').then(response => response.json())
     .then(data => {
         const bookList = document.getElementById('bookList');

@@ -1,3 +1,4 @@
+drop database if exists bookstore;
 create database bookstore;
 use bookstore;
 
@@ -12,6 +13,6 @@ image varchar(500)
 
 insert into books(title, author, price, category,image)
 values
-("Node.js Guide", "John Smith", 29.99, "Programming", "/Images/node.js.jpg"),
-("Javascript Mastery", "David Brown", 34.99, "Programming", "/Images/javascript-mastery.jpg"),
-("CSS Design", "Sarah Wilson", 19.99, "Web Design", "/Images/css-design.jpg");
+("Node.js Guide", "John Smith", 29.99, "Programming", "nodejs-guide.jpg"),
+("Javascript Mastery", "David Brown", 34.99, "Programming", "javascript-mastery.jpg"),
+("CSS Design", "Sarah Wilson", 19.99, "Web Design", "css-design.jpg");
