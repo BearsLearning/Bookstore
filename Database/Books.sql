@@ -1,3 +1,6 @@
+create database bookstore;
+use bookstore;
+
 create table books(
 id int auto_increment primary key,
 title varchar(225),
